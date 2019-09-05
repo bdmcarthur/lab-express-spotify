@@ -41,10 +41,9 @@ app.get('/', (req, res, next) => {
 });
 
 app.post('/artists', (req, res, next) => {
-    // res.send(req.body);
+    //////////////////Check params vs body
     let artist = req.body.artist;
-    console.log(artist)
-
+  
     spotifyApi.searchArtists(artist)
     .then(data => {
     //   console.log("The received data from the API: ", data.body);
@@ -60,18 +59,44 @@ app.post('/artists', (req, res, next) => {
 });
 
 
-app.get('/albums/:artistID', (req, res, next) => {
+app.post('/albums/:artistID', (req, res, next) => {
     let artistId = req.params.artistID
     spotifyApi.getArtistAlbums(artistId)
     .then(function(data) {
         const dataArtist = {
-            items: data.body.items
+            albums: data.body.items
         }
-        console.log('Artist albums', dataArtist.items);
-        res.render('albums')
+
+        res.render('albums', dataArtist)
     }, function(err) {
         console.error(err);
     });
 });
+
+app.post('/tracks/:albumID', (req, res, next) => {
+  let albumId = req.params.albumID
+  spotifyApi.getAlbumTracks(albumId, { limit : 5, offset : 1 })
+  .then(function(data) {
+    const dataTracks = {
+      albums: data.body.items
+  }
+    console.log(dataTracks);
+    res.render('tracks', dataTracks)
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(3000, () => console.log("My Spotify project running on port 3000 🎧 🥁 🎸 🔊"));

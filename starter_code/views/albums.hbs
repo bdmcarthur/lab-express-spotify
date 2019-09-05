@@ -1,8 +1,16 @@
 <h1>Albums Page</h1>
-<div class='artists'>
-{{#each items}}
-    <p>{{ this.[0] }}</p>
-<button><a href="/albums/{{this.id}}">View Albums</a></button>       
+{{#each albums}}
+    <p>{{ this.name }}</p>
+    {{#each this.images}}
+        {{#if @first}}
+            <img src={{this.url}}>
+        {{/if}}
+    {{/each}}
+
+<form action='/tracks/{{this.id}}' method='POST'>
+    <button>View Tracks</button>
+</form>
+      
 {{/each}}
 </div>
 

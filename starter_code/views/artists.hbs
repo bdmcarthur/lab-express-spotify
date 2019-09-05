@@ -7,7 +7,11 @@
             <img src={{this.url}}>
         {{/if}}
     {{/each}}
-<button><a href="/albums/{{this.id}}">View Albums</a></button>       
+
+<form action='/albums/{{this.id}}' method='POST'>
+    <button>View Albums</button>
+</form>
+      
 {{/each}}
 </div>
 
