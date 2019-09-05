@@ -1,0 +1,9 @@
+<h1>Albums Page</h1>
+<div class='artists'>
+{{#each items}}
+    <p>{{ this.[0] }}</p>
+<button><a href="/albums/{{this.id}}">View Albums</a></button>       
+{{/each}}
+</div>
+
+

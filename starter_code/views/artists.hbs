@@ -1,0 +1,17 @@
+<h1>Artist Page</h1>
+<div class='artists'>
+{{#each items}}
+    <p>{{ this.name }}</p>
+    {{#each this.images}}
+        {{#if @first}}
+            <img src={{this.url}}>
+        {{/if}}
+    {{/each}}
+<button><a href="/albums/{{this.id}}">View Albums</a></button>       
+{{/each}}
+</div>
+
+
+
+
+
