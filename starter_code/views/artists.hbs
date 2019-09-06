@@ -1,21 +1,21 @@
-<h1>Artist Page</h1>
-<div class='artists'>
-{{#each items}}
-    <p>{{ this.name }}</p>
-    {{#each this.images}}
-        {{#if @first}}
-            <img src={{this.url}}>
-        {{/if}}
+<h1 class="text-center mt-5">Artist Page</h1>
+
+<div class="container row justify-content-center mx-auto">
+    {{#each items}}
+    <div class="col-sm-4 mt-5 pt-3">
+    <div class="card align-items-center">
+        {{#each this.images}}  
+            {{#if @first}}
+                <img class="card-img-top" src={{this.url}}>
+            {{/if}}
+        {{/each}}
+        <div class="card-body text-center">
+            <h5 class="card-title text-center">{{ this.name }}</h5>
+            <form action='/albums/{{this.id}}' method='POST'>
+                <button class="btn btn-danger">View Albums</button>
+            </form>    
+        </div>
+    </div>
+    </div>
     {{/each}}
-
-<form action='/albums/{{this.id}}' method='POST'>
-    <button>View Albums</button>
-</form>
-      
-{{/each}}
 </div>
-
-
-
-
-
